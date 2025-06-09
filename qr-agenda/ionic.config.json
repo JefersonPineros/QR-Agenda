@@ -1,0 +1,7 @@
+{
+  "name": "qr-agenda",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
