@@ -6,14 +6,14 @@
   </ion-header>
   <ion-content class="ion-padding">
     <ion-list [inset]="true">
-      <ion-item [button]="true">
+      <ion-item [button]="true" routerLink="/events">
         <ion-icon
           color="danger"
           slot="start"
           name="list-circle"
           size="large"
         ></ion-icon>
-        <ion-label>General</ion-label>
+        <ion-label>Eventos</ion-label>
         <ion-note slot="end">6</ion-note>
       </ion-item>
       <ion-item [button]="true">
@@ -23,7 +23,7 @@
           name="list-circle"
           size="large"
         ></ion-icon>
-        <ion-label>Shopping</ion-label>
+        <ion-label>Crear</ion-label>
         <ion-note slot="end">15</ion-note>
       </ion-item>
       <ion-item [button]="true">
@@ -33,7 +33,7 @@
           name="list-circle"
           size="large"
         ></ion-icon>
-        <ion-label>Cleaning</ion-label>
+        <ion-label>Check-in</ion-label>
         <ion-note slot="end">3</ion-note>
       </ion-item>
       <ion-item [button]="true">
@@ -43,7 +43,27 @@
           name="list-circle"
           size="large"
         ></ion-icon>
-        <ion-label>Reminders</ion-label>
+        <ion-label>Exportar</ion-label>
+        <ion-note slot="end">8</ion-note>
+      </ion-item>
+      <ion-item [button]="true">
+        <ion-icon
+          color="warning"
+          slot="start"
+          name="list-circle"
+          size="large"
+        ></ion-icon>
+        <ion-label>Analisis</ion-label>
+        <ion-note slot="end">8</ion-note>
+      </ion-item>
+      <ion-item [button]="true">
+        <ion-icon
+          color="warning"
+          slot="start"
+          name="list-circle"
+          size="large"
+        ></ion-icon>
+        <ion-label>Escanear</ion-label>
         <ion-note slot="end">8</ion-note>
       </ion-item>
     </ion-list>
