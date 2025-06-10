@@ -1,0 +1,50 @@
+:host {
+  /* make sure the component fills the page and uses a nice mobile spacing */
+  display: block;
+}
+
+/***  TEXT STYLES  ***/
+.subtitle {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+/***  OPTION ROWS  ***/
+.export-option {
+  margin-bottom: 0.75rem;
+
+  ion-label {
+    h3 {
+      font-size: 0.97rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: #6b6b6b;
+      margin: 0;
+    }
+  }
+
+  /* tweak the checkbox colours to match the blue in the screenshot */
+  ion-checkbox {
+    --background: #ffffff;
+    --border-color: #b3bec9;
+    --checkmark-color: #ffffff;
+
+    &.checkbox-checked {
+      --background: #1e90ff;
+      --border-color: #1e90ff;
+    }
+  }
+}
+
+/***  EXPORT BUTTON  ***/
+.export-btn {
+  margin-top: 2.5rem;
+  --background: #1e90ff;
+  --border-radius: 8px;
+  font-weight: 600;
+}
