@@ -1,3 +1,45 @@
-<p>
-  create works!
-</p>
+<div class="formulario">
+  <h6 class="titulo-principal">Nuevo evento</h6>
+
+  <input
+    type="text"
+    id="titulo"
+    name="titulo"
+    placeholder="Título del evento"
+  />
+
+  <input type="date" id="fecha" name="fecha" />
+
+  <div class="ponencias">
+    <div class="ponencias-titulo">
+      <button class="btn-microfono" type="button" aria-label="Icono micrófono">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z"
+          />
+        </svg>
+      </button>
+
+      <div>
+        <span class="titulo">Ponencias</span><br />
+        <span class="tema">Tema:</span>
+      </div>
+    </div>
+    <textarea rows="4" placeholder="Describe las ponencias aquí..."></textarea>
+  </div>
+
+  <div class="botones">
+    <button class="btn-gris">Añadir ponentes</button>
+    <button class="btn-azul">Publicar</button>
+  </div>
+</div>
