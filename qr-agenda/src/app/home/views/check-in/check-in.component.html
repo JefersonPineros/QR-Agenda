@@ -1,3 +1,108 @@
-<p>
-  check-in works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div class="hcs">
+        <ion-buttons slot="start">
+          <ion-button fill="clear" (click)="goBack()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="back-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+              />
+            </svg>
+          </ion-button>
+        </ion-buttons>
+
+        <span style="text-align: center">Check-in</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <!-- Tabs Menu -->
+    <div class="tabs-container">
+      <button
+        class="tab-button"
+        [class.active]="selectedTab === 'todos'"
+        (click)="selectTab('todos')"
+      >
+        Todos
+      </button>
+      <button
+        class="tab-button"
+        [class.active]="selectedTab === 'proximos'"
+        (click)="selectTab('proximos')"
+      >
+        Próximos
+      </button>
+    </div>
+
+    <!-- Eventos próximos -->
+    <div *ngIf="selectedTab === 'todos' || selectedTab === 'proximos'">
+      <div
+        *ngFor="let event of getUpcomingEvents()"
+        class="event-card"
+        (click)="onEventClick(event)"
+      >
+        <div class="event-content">
+          <h3 class="event-title">{{ event.title }}</h3>
+          <p class="event-date">{{ event.date }} · {{ event.time }}</p>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="arrow-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Sección Pasados (solo visible en tab "Todos") -->
+    <div *ngIf="selectedTab === 'todos'">
+      <h2 class="section-title">Pasados</h2>
+
+      <div
+        *ngFor="let event of getPastEvents()"
+        class="event-card past-event"
+        (click)="onEventClick(event)"
+      >
+        <div class="event-content">
+          <h3 class="event-title">{{ event.title }}</h3>
+          <p class="event-date">{{ event.date }} · {{ event.time }}</p>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="arrow-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</ion-content>
