@@ -1,7 +1,7 @@
 <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu Content</ion-title>
+      <ion-title>Manu - QR-Agenda</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
@@ -93,28 +93,72 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title> Blank </ion-title>
+      <ion-title> QR-Agenda </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">Qr-Event</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
+  <ion-content [fullscreen]="true" class="ion-padding event-list">
     <div id="container">
-      <strong>Ready to create an app?</strong>
-      <p>
-        Start with Ionic
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://ionicframework.com/docs/components"
-          >UI Components</a
-        >
-      </p>
+      <h3>Mis Eventos</h3>
     </div>
+
+    <ion-grid
+      class="list-events-p"
+      *ngFor="let list of listEvents; let il = index"
+      (click)="eventsClic()"
+    >
+      <ion-row>
+        <ion-col size="11">
+          <ion-row class="name-event">
+            <ion-col> {{list.nombre_evento }} </ion-col>
+          </ion-row>
+
+          <ion-row class="date-event">
+            <ion-col>
+              {{list.fecha_evento | date: 'yyyy-MM-dd , HH:mm'}}
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="avatar-stack">
+            <ion-col>
+              <img
+                *ngFor="let participante of list.asistentes; let i = index"
+                [src]="participante.images"
+                class="avatar"
+              />
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col style="margin-top: 25%; color: rgb(180, 180, 180)" size="1">
+          <ion-icon size="large" name="color-wand"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid style="margin-top: 15%">
+      <ion-row>
+        <ion-col>
+          <ion-button
+            color="secondary"
+            style="--background-color: #339de7"
+            expand="block"
+            size="small"
+          >
+            <ion-icon slot="start" name="add"></ion-icon>
+            Nuevo evento
+          </ion-button>
+
+          <ion-button
+            color="light"
+            style="--background-color: #339de7; margin-top: 5%"
+            expand="block"
+            size="small"
+          >
+            <ion-icon slot="start" name="people"></ion-icon>
+            Invitar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-content>
 </div>

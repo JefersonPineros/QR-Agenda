@@ -8,30 +8,35 @@
 </ion-header>
 
 <ion-content class="ion-padding" [fullscreen]="true">
-  <ion-grid style="margin-top: 10%">
+  <ion-grid style="margin-top: 5%">
     <ion-row>
       <ion-col size="12" style="text-align: center">
-        <h3>Bienvenido</h3>
+        <h4 class="welcome">Bienvenido</h4>
       </ion-col>
-      <ion-col size="12">
+
+      <ion-col size="12" style="margin-top: 10%">
         <ion-input
-          label="Solid input"
+          label="Correo electronico"
+          label-placement="floating"
+          fill="solid"
+          placeholder="Enter text"
+          style="--border-end-end-raius: 4px"
+        ></ion-input>
+      </ion-col>
+
+      <ion-col size="12" style="margin-top: 10%">
+        <ion-input
+          label="Contraseña"
           label-placement="floating"
           fill="solid"
           placeholder="Enter text"
         ></ion-input>
       </ion-col>
 
-      <ion-col size="12" style="margin-top: 20px">
-        <ion-input
-          label="Solid input"
-          label-placement="floating"
-          fill="solid"
-          placeholder="Enter text"
-        ></ion-input>
-      </ion-col>
-      <ion-col size="12" style="padding: 10px">
-        <ion-button expand="block" (click)="goLogin()">Block</ion-button>
+      <ion-label style="margin-left: 8px">Olvidaste la contraseña</ion-label>
+
+      <ion-col size="12" style="padding: 10px; margin-top: 10%">
+        <ion-button expand="block" (click)="goLogin()">Ingresar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

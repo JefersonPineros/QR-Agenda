@@ -11,6 +11,7 @@ import {
   IonGrid,
   IonRow,
   IonInput,
+  IonLabel,
 } from '@ionic/angular/standalone';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -31,6 +32,7 @@ import { Router } from '@angular/router';
     IonGrid,
     IonRow,
     IonInput,
+    IonLabel,
   ],
 })
 export class LoginComponent implements OnInit {
