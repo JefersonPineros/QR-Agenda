@@ -139,6 +139,7 @@
       <ion-row>
         <ion-col>
           <ion-button
+            (click)="goCreate()"
             *ngIf="this.typeUser == 'admin'"
             color="secondary"
             style="--background-color: #339de7"
@@ -150,6 +151,7 @@
           </ion-button>
 
           <ion-button
+            (click)="goCheckIn()"
             color="light"
             style="--background-color: #339de7; margin-top: 5%"
             expand="block"

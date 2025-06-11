@@ -136,6 +136,14 @@ export class HomePage {
     ];
   }
 
+  goCreate() {
+    this.router.navigate(['/create', this.typeUser]);
+  }
+
+  goCheckIn() {
+    this.router.navigate(['/checkIn', this.typeUser]);
+  }
+
   eventsClic() {
     console.log('Hola mundo');
   }
