@@ -1,0 +1,207 @@
+ion-header {
+  text-align: center;
+  padding-top: 8px;
+  box-shadow: none !important;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+  color: #000;
+}
+
+.hcs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hcs span {
+  flex: 1;
+  text-align: center;
+}
+
+.container {
+  padding: 40px 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-info {
+  margin-bottom: 60px;
+
+  .info-item {
+    display: flex;
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .info-label {
+    font-weight: 700;
+    color: #333;
+    font-size: 16px;
+    min-width: 80px;
+    margin-right: 8px;
+  }
+
+  .info-value {
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding-top: 40px;
+  justify-content: start;
+
+  .qr-code {
+    width: 280px;
+    height: 280px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+    .qr-image {
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      background: white;
+      border-radius: 4px;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    // Fallback para cuando la imagen no cargue
+    &.image-error {
+      .qr-image {
+        display: none;
+      }
+
+      &::after {
+        content: "QR no disponible";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 280px;
+        height: 280px;
+        background: #f5f5f5;
+        color: #666;
+        font-size: 14px;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .qr-instruction {
+    text-align: center;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 0;
+    max-width: 220px;
+  }
+}
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+  padding: 40px 20px;
+
+  .loading-spinner {
+    margin-bottom: 16px;
+
+    .spinner-icon {
+      width: 32px;
+      height: 32px;
+      color: #3f51b5;
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  .error-icon {
+    margin-bottom: 16px;
+
+    svg {
+      width: 48px;
+      height: 48px;
+      color: #f44336;
+    }
+  }
+
+  p {
+    color: #000000;
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+
+  ion-button {
+    --border-radius: 12px;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 12px;
+  }
+
+  .qr-section .qr-code {
+    width: 300px;
+    height: 300px;
+    justify-content: center;
+
+    .qr-image {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  .event-info {
+    margin-bottom: 40px;
+  }
+
+  .info-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

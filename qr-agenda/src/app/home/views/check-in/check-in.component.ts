@@ -7,7 +7,6 @@ import {
   IonContent,
   IonButtons,
   IonButton,
-  IonIcon,
 } from '@ionic/angular/standalone';
 
 import { Router } from '@angular/router';
@@ -32,7 +31,6 @@ interface Evento {
     IonContent,
     IonButtons,
     IonButton,
-    IonIcon
   ],
 })
 export class CheckInComponent implements OnInit {
@@ -82,8 +80,14 @@ export class CheckInComponent implements OnInit {
   }
 
   onEventClick(event: Evento) {
-    // Acción al clickear el evento
-    console.log('Event clicked:', event);
+    this.router.navigate(['/event-details'], {
+      queryParams: {
+        title: event.title,
+        date: event.date,
+        time: event.time,
+        type: event.type,
+      },
+    });
   }
 
   goBack() {

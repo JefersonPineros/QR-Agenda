@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div class="hcs">
+        <ion-buttons slot="start">
+          <ion-button fill="clear" (click)="goBack()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="back-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+              />
+            </svg>
+          </ion-button>
+        </ion-buttons>
+
+        <span style="text-align: center">Check-in</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container" *ngIf="!loading && event">
+    <!-- Información básica del evento -->
+    <div class="event-info">
+      <div class="info-item">
+        <span class="info-label">Evento:</span>
+        <span class="info-value">{{ event.title }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="info-label">Fecha:</span>
+        <span class="info-value">{{ event.date }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="info-label">Hora:</span>
+        <span class="info-value">{{ event.time }}</span>
+      </div>
+    </div>
+
+    <!-- QR Code -->
+    <div class="qr-section">
+      <div class="qr-code">
+        <!-- Imagen QR real -->
+        <img
+          src="assets/images/qr.png"
+          alt="QR Code para check-in"
+          class="qr-image"
+          (error)="onImageError($event)"
+          (load)="onImageLoad($event)"
+        />
+      </div>
+
+      <p class="qr-instruction">Escanea este código para tu check-in</p>
+    </div>
+  </div>
+
+  <!-- Loading state -->
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="spinner-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+        />
+      </svg>
+    </div>
+    <p>Cargando detalles del evento...</p>
+  </div>
+
+  <!-- Error state -->
+  <div class="error-container" *ngIf="!loading && !event">
+    <div class="error-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+        />
+      </svg>
+    </div>
+    <p>No se encontraron detalles para este evento.</p>
+    <ion-button fill="outline" color="primary" (click)="goBack()">
+      Volver al Check-in
+    </ion-button>
+  </div>
+</ion-content>
