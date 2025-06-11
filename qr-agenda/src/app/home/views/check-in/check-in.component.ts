@@ -7,9 +7,9 @@ import {
   IonContent,
   IonButtons,
   IonButton,
-  IonIcon,
 } from '@ionic/angular/standalone';
 
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 interface Evento {
@@ -32,7 +32,6 @@ interface Evento {
     IonContent,
     IonButtons,
     IonButton,
-    IonIcon,
   ],
 })
 export class CheckInComponent implements OnInit {
@@ -64,8 +63,18 @@ export class CheckInComponent implements OnInit {
       type: 'pasado',
     },
   ];
+  public typeUser: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.route.paramMap.subscribe({
+      next: (param) => {
+        const type = param.get('type');
+        if (type) {
+          this.typeUser = type;
+        }
+      },
+    });
+  }
 
   ngOnInit() {}
 
@@ -82,11 +91,17 @@ export class CheckInComponent implements OnInit {
   }
 
   onEventClick(event: Evento) {
-    // Acción al clickear el evento
-    console.log('Event clicked:', event);
+    this.router.navigate(['/event-details', this.typeUser], {
+      queryParams: {
+        title: event.title,
+        date: event.date,
+        time: event.time,
+        type: event.type,
+      },
+    });
   }
 
   goBack() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home', this.typeUser]);
   }
 }

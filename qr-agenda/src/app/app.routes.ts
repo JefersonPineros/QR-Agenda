@@ -29,6 +29,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'event-details/:type',
+    loadComponent: () =>
+      import('./home/views/check-in/detail-event/detail-event.component').then(
+        (m) => m.DetailEventComponent
+      ),
+  },
+  {
     path: 'create/:type',
     loadComponent: () =>
       import('./home/views/create/create.component').then(
