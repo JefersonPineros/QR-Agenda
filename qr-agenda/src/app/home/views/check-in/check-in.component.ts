@@ -32,7 +32,7 @@ interface Evento {
     IonContent,
     IonButtons,
     IonButton,
-    IonIcon
+    IonIcon,
   ],
 })
 export class CheckInComponent implements OnInit {

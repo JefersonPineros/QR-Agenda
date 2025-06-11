@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import {
   IonButtons,
@@ -11,7 +12,8 @@ import {
   IonItem,
   IonLabel,
   IonCheckbox,
-  IonButton
+  IonButton,
+  IonIcon,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -29,16 +31,28 @@ import {
     IonLabel,
     IonCheckbox,
     IonButton,
+    IonIcon,
   ],
 })
 export class ExportComponent {
   /** Reactive-form object that tracks the two check-boxes */
   exportForm: FormGroup;
+  public typeUser: string = '';
 
   constructor(
     private fb: FormBuilder,
-    private toastCtrl: ToastController // Just to show quick feedback
+    private toastCtrl: ToastController,
+    private router: Router,
+    private route: ActivatedRoute // Just to show quick feedback
   ) {
+    this.route.paramMap.subscribe({
+      next: (param) => {
+        const type = param.get('type');
+        if (type) {
+          this.typeUser = type;
+        }
+      },
+    });
     this.exportForm = this.fb.group({
       csv: [false],
       pdf: [false],
@@ -75,5 +89,9 @@ export class ExportComponent {
       duration: 2000,
     });
     await ok.present();
+  }
+
+  goBack() {
+    this.router.navigate(['/home', this.typeUser]);
   }
 }

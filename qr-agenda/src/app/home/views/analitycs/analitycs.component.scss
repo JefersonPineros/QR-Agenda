@@ -1,0 +1,22 @@
+ion-header {
+  text-align: center;
+  padding-top: 8px;
+  box-shadow: none !important;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+  color: #000;
+}
+
+.hcs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hcs span {
+  flex: 1;
+  text-align: center;
+}

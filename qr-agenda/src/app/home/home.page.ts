@@ -15,6 +15,7 @@ import {
   IonNote,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
+import { ActivatedRoute } from '@angular/router';
 import { logoIonic, arrowForward, peopleOutline } from 'ionicons/icons';
 import { NavController } from '@ionic/angular';
 import { EventModel } from '../model/eventModel';
@@ -43,9 +44,23 @@ import { CommonModule } from '@angular/common';
   ],
 })
 export class HomePage {
-  public listEvents?: Array<EventModel>;
+  public listEvents: Array<EventModel>;
+  public typeUser: string = '';
 
-  constructor(private navCtrl: NavController, private router: Router) {
+  constructor(
+    private navCtrl: NavController,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.paramMap.subscribe({
+      next: (param) => {
+        const type = param.get('type');
+        if (type) {
+          this.typeUser = type;
+        }
+      },
+    });
+
     addIcons({
       logoIonic,
       arrowForward,

@@ -1,8 +1,21 @@
 <!-- HEADER -->
-<ion-header >
+<ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+    <ion-buttons slot="start" (click)="goBack()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="back-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+        />
+      </svg>
     </ion-buttons>
     <ion-title>Exportar Datos</ion-title>
   </ion-toolbar>
@@ -10,17 +23,18 @@
 
 <!-- CONTENT -->
 <ion-content class="ion-padding">
-
   <!-- Subtitle -->
   <h2 class="subtitle">Genera un reporte en CSV o PDF</h2>
 
   <form>
-
     <!-- CSV option -->
     <ion-item lines="none" class="export-option">
       <ion-label>
         <h3>CSV</h3>
-        <p>Exporta tus datos en formato CSV para acceder a la información de tus eventos.</p>
+        <p>
+          Exporta tus datos en formato CSV para acceder a la información de tus
+          eventos.
+        </p>
       </ion-label>
       <ion-checkbox slot="end" formControlName="csv"></ion-checkbox>
     </ion-item>
@@ -33,7 +47,6 @@
       </ion-label>
       <ion-checkbox slot="end" formControlName="pdf"></ion-checkbox>
     </ion-item>
-
   </form>
 
   <!-- Export button (disabled until at least one box is ticked) -->
@@ -41,8 +54,8 @@
     expand="block"
     class="export-btn"
     [disabled]="!exportForm.value.csv && !exportForm.value.pdf"
-    (click)="onExport()">
+    (click)="onExport()"
+  >
     Exportar
   </ion-button>
-
 </ion-content>

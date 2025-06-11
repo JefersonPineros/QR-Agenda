@@ -2,7 +2,20 @@
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-buttons slot="start" (click)="goBack()">
-        <ion-icon size="large" name="chevron-back"></ion-icon>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="back-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
+        </svg>
       </ion-buttons>
       <ion-title> QR-Agenda </ion-title>
     </ion-toolbar>

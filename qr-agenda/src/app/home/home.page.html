@@ -21,7 +21,7 @@
       </ion-item>
       <ion-item
         [button]="true"
-        [routerLink]="['/create']"
+        [routerLink]="[`/create/${typeUser}`]"
         routerDirection="forward"
       >
         <ion-icon
@@ -34,7 +34,7 @@
       </ion-item>
       <ion-item
         [button]="true"
-        [routerLink]="['/checkIn']"
+        [routerLink]="[`/checkIn/${typeUser}`]"
         routerDirection="forward"
       >
         <ion-icon
@@ -47,7 +47,7 @@
       </ion-item>
       <ion-item
         [button]="true"
-        [routerLink]="['/export']"
+        [routerLink]="[`/export/${typeUser}`]"
         routerDirection="forward"
       >
         <ion-icon
@@ -60,7 +60,7 @@
       </ion-item>
       <ion-item
         [button]="true"
-        [routerLink]="['/analitycs']"
+        [routerLink]="[`/analitycs/${typeUser}`]"
         routerDirection="forward"
       >
         <ion-icon
@@ -73,7 +73,7 @@
       </ion-item>
       <ion-item
         [button]="true"
-        [routerLink]="['/scan']"
+        [routerLink]="[`/scan/${typeUser}`]"
         routerDirection="forward"
       >
         <ion-icon
@@ -139,6 +139,7 @@
       <ion-row>
         <ion-col>
           <ion-button
+            *ngIf="this.typeUser == 'admin'"
             color="secondary"
             style="--background-color: #339de7"
             expand="block"

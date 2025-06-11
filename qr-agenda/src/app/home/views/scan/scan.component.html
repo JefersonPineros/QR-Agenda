@@ -1,8 +1,43 @@
 <ion-header [translucent]="true">
-  <ion-toolbar style="--box-shadow: none" class="mi-toolbar-personalizado">
-    <!-- <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons> -->
-    <ion-title style="text-align: center">QR-Agenda</ion-title>
+  <ion-toolbar>
+    <ion-title>
+      <div class="hcs">
+        <ion-buttons slot="start">
+          <ion-button fill="clear" (click)="goBack()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="back-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+              />
+            </svg>
+          </ion-button>
+        </ion-buttons>
+
+        <span style="text-align: center">QR-Agenda</span>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: center">
+        <h4>Pagina en construcción - Escaner</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <img src="/assets/images/EnConstruccion.png" alt="" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
