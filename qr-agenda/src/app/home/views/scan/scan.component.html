@@ -1,8 +1,83 @@
 <ion-header [translucent]="true">
-  <ion-toolbar style="--box-shadow: none" class="mi-toolbar-personalizado">
-    <!-- <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons> -->
-    <ion-title style="text-align: center">QR-Agenda</ion-title>
+  <ion-toolbar>
+    <ion-title>
+      <div class="hcs">
+        <ion-buttons slot="start">
+          <ion-button fill="clear" (click)="goBack()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="back-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+              />
+            </svg>
+          </ion-button>
+        </ion-buttons>
+        <span style="text-align: center"
+          >Escanear códigos QR de asistentes</span
+        >
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="scan-container">
+    <!-- Información de capacidad -->
+    <div class="capacity-section">
+      <span class="capacity-text">Capacidad: {{ eventData.capacity }}</span>
+    </div>
+
+    <!-- Texto de instrucción -->
+    <div class="instruction-text">
+      <h2>
+        Por favor, escanea el código QR en los dispositivos de los asistentes
+      </h2>
+    </div>
+
+    <!-- Lista de alertas -->
+    <div class="alerts-section">
+      <div class="alert-item" *ngFor="let alert of eventData.alerts">
+        <span class="alert-text">Alerta: {{ alert }}</span>
+      </div>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="action-buttons">
+      <ion-button
+        expand="block"
+        fill="solid"
+        class="scan-button"
+        (click)="onScanCode()"
+      >
+        ESCANEAR CODIGO
+      </ion-button>
+
+      <ion-button
+        expand="block"
+        fill="outline"
+        class="finish-button"
+        (click)="finalizarEvento()"
+      >
+        Finalizar Evento
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Alert -->
+  <ion-alert
+    [isOpen]="isAlertOpen"
+    header="Finalizar evento"
+    message="¿Estás seguro que deseas finalizar el evento?"
+    [buttons]="alertButtons"
+    (didDismiss)="setOpen(false)"
+  >
+  </ion-alert>
+</ion-content>

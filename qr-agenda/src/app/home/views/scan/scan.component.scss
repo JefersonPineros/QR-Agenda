@@ -1,0 +1,108 @@
+.title {
+  text-align: center;
+  font-weight: bolder;
+  padding: 20px;
+}
+
+ion-header {
+  text-align: center;
+  padding-top: 8px;
+  box-shadow: none !important;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+  color: #000;
+}
+
+.hcs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hcs span {
+  flex: 1;
+  text-align: center;
+  word-break: break-word;
+  white-space: normal;
+  min-width: 0;
+}
+
+// Nuevos estilos para la pantalla de escaneo
+.scan-container {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.capacity-section {
+  margin-bottom: 24px;
+
+  .capacity-text {
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+  }
+}
+
+.instruction-text {
+  margin-bottom: 32px;
+
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.4;
+  }
+}
+
+.alerts-section {
+  flex: 1;
+  margin-bottom: 32px;
+
+  .alert-item {
+    margin-bottom: 16px;
+
+    .alert-text {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+  }
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .scan-button {
+    --background: #007bff;
+    --background-activated: #0056b3;
+    --color: white;
+    height: 48px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 30px;
+    margin: 0;
+  }
+
+  .finish-button {
+    --color: #666;
+    --border-color: #ccc;
+    --background: transparent;
+    height: 48px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    margin: 0;
+  }
+}
