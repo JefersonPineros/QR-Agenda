@@ -9,6 +9,7 @@ import {
   peopleOutline,
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -17,7 +18,16 @@ import { addIcons } from 'ionicons';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CreateComponent implements OnInit {
-  constructor(private router: Router) {
+  public typeUser: string = '';
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.route.paramMap.subscribe({
+      next: (param) => {
+        const type = param.get('type');
+        if (type) {
+          this.typeUser = type;
+        }
+      },
+    });
     addIcons({
       logoIonic,
       arrowForward,
@@ -29,6 +39,6 @@ export class CreateComponent implements OnInit {
   ngOnInit() {}
 
   goBack() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home', this.typeUser]);
   }
 }

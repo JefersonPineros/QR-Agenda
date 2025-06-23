@@ -37,11 +37,20 @@ export class DetailEventComponent implements OnInit {
   event: Evento | null = null;
   loading = true;
   imageError = false;
-
+  public typeUser: string = '';
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
+      this.route.paramMap.subscribe({
+        next: (param) => {
+          const type = param.get('type');
+          if (type) {
+            this.typeUser = type;
+          }
+        },
+      });
+
       if (params['title']) {
         this.event = {
           title: params['title'],
@@ -51,13 +60,13 @@ export class DetailEventComponent implements OnInit {
         };
         this.loading = false;
       } else {
-        this.router.navigate(['/checkIn']);
+        this.router.navigate(['/checkIn', this.typeUser]);
       }
     });
   }
 
   goBack() {
-    this.router.navigate(['/checkIn']);
+    this.router.navigate(['/checkIn', this.typeUser]);
   }
 
   isUpcoming(): boolean {

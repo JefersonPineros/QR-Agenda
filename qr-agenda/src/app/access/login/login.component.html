@@ -1,8 +1,5 @@
 <ion-header [translucent]="true">
   <ion-toolbar style="--box-shadow: none" class="mi-toolbar-personalizado">
-    <!-- <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons> -->
     <ion-title>QR-Agenda</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,6 +13,7 @@
 
       <ion-col size="12" style="margin-top: 10%">
         <ion-input
+          [(ngModel)]="user.userName"
           label="Correo electronico"
           label-placement="floating"
           fill="solid"
@@ -26,10 +24,12 @@
 
       <ion-col size="12" style="margin-top: 10%">
         <ion-input
+          [(ngModel)]="user.password"
           label="Contraseña"
           label-placement="floating"
           fill="solid"
           placeholder="Enter text"
+          type="password"
         ></ion-input>
       </ion-col>
 

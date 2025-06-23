@@ -9,6 +9,7 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 interface Evento {
@@ -62,8 +63,18 @@ export class CheckInComponent implements OnInit {
       type: 'pasado',
     },
   ];
+  public typeUser: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.route.paramMap.subscribe({
+      next: (param) => {
+        const type = param.get('type');
+        if (type) {
+          this.typeUser = type;
+        }
+      },
+    });
+  }
 
   ngOnInit() {}
 
@@ -80,7 +91,7 @@ export class CheckInComponent implements OnInit {
   }
 
   onEventClick(event: Evento) {
-    this.router.navigate(['/event-details'], {
+    this.router.navigate(['/event-details', this.typeUser], {
       queryParams: {
         title: event.title,
         date: event.date,
@@ -91,6 +102,6 @@ export class CheckInComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home', this.typeUser]);
   }
 }
