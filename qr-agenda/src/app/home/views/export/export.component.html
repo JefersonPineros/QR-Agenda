@@ -1,5 +1,5 @@
 <!-- HEADER -->
-<ion-header >
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
@@ -37,11 +37,7 @@
   </form>
 
   <!-- Export button (disabled until at least one box is ticked) -->
-  <ion-button
-    expand="block"
-    class="export-btn"
-    [disabled]="!exportForm.value.csv && !exportForm.value.pdf"
-    (click)="onExport()">
+  <ion-button expand="block" class="export-btn" (click)="onExport()">
     Exportar
   </ion-button>
 

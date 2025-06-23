@@ -35,6 +35,11 @@ export class ExportComponent {
   /** Reactive-form object that tracks the two check-boxes */
   exportForm: FormGroup;
 
+  /** Path to the asset to download */
+  private readonly reportPath = 'assets/reports/evento-resumen.xlsx';
+  /** Suggested file-name for the user’s download */
+  private readonly downloadName = 'evento-resumen.xlsx';
+
   constructor(
     private fb: FormBuilder,
     private toastCtrl: ToastController // Just to show quick feedback
@@ -45,35 +50,24 @@ export class ExportComponent {
     });
   }
 
-  /** Triggered when the bottom “Exportar” button is pressed */
+  /** Download the XLSX sitting in assets/ and show a toast  */
   async onExport(): Promise<void> {
-    const { csv, pdf } = this.exportForm.value;
+    // build a hidden <a> tag and trigger a click → download starts
+    const a = document.createElement('a');
+    a.href = this.reportPath;        // served by Angular dev server / built site
+    a.download = this.downloadName;  // forces “Save as…” with that name
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 
-    if (!csv && !pdf) {
-      const warn = await this.toastCtrl.create({
-        message: 'Selecciona al menos un formato para exportar.',
-        color: 'warning',
-        duration: 2000,
-      });
-      await warn.present();
-      return;
-    }
-
-    // ── TODO: wire these calls to whatever service generates the files ──
-    if (csv) {
-      console.log('Generating CSV …');
-      /* this.exportService.generateCsv(); */
-    }
-    if (pdf) {
-      console.log('Generating PDF …');
-      /* this.exportService.generatePdf(); */
-    }
-
+    // quick feedback
     const ok = await this.toastCtrl.create({
-      message: 'El reporte se está generando. Revisa tus descargas.',
-      color: 'success',
+      message: 'Descarga iniciada ✔',
       duration: 2000,
+      color: 'success',
     });
     await ok.present();
   }
+
+  /** Triggered when the bottom “Exportar” button is pressed */
 }
