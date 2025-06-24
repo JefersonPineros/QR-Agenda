@@ -106,3 +106,24 @@ ion-header {
     margin: 0;
   }
 }
+
+.scanned-modal {
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #1e1e1e;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  ion-button {
+    margin-top: 24px;
+  }
+}

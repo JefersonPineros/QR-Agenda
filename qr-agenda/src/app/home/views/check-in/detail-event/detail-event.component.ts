@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -10,6 +10,7 @@ import {
 } from '@ionic/angular/standalone';
 
 import { Router, ActivatedRoute } from '@angular/router';
+import { QRCodeComponent } from 'angularx-qrcode';
 
 interface Evento {
   title: string;
@@ -31,13 +32,14 @@ interface Evento {
     IonContent,
     IonButtons,
     IonButton,
+    QRCodeComponent,
   ],
 })
 export class DetailEventComponent implements OnInit {
   event: Evento | null = null;
   loading = true;
-  imageError = false;
   public typeUser: string = '';
+  public qrData: string = ''; // Propiedad para almacenar los datos del QR
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -59,6 +61,7 @@ export class DetailEventComponent implements OnInit {
           type: params['type'] as 'check-in' | 'pasado',
         };
         this.loading = false;
+        this.qrData = JSON.stringify(this.event); // Convertir el objeto evento a JSON para el QR
       } else {
         this.router.navigate(['/checkIn', this.typeUser]);
       }
@@ -71,20 +74,5 @@ export class DetailEventComponent implements OnInit {
 
   isUpcoming(): boolean {
     return this.event?.type === 'check-in';
-  }
-
-  onImageError(event: any) {
-    console.error('Error al cargar la imagen QR:', event);
-    this.imageError = true;
-    event.target.parentElement.classList.add('image-error');
-  }
-
-  onImageLoad(event: any) {
-    this.imageError = false;
-    event.target.parentElement.classList.remove('image-error');
-  }
-
-  doCheckIn() {
-    console.log('Haciendo check-in para:', this.event?.title);
   }
 }

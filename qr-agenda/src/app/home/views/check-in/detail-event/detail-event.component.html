@@ -50,14 +50,15 @@
     <!-- QR Code -->
     <div class="qr-section">
       <div class="qr-code">
-        <!-- Imagen QR real -->
-        <img
-          src="assets/images/qr.png"
+        <!-- QR Code dinámico generado con la información del evento -->
+        <qrcode
+          *ngIf="qrData"
+          [qrdata]="qrData"
+          [width]="256"
+          [errorCorrectionLevel]="'M'"
           alt="QR Code para check-in"
           class="qr-image"
-          (error)="onImageError($event)"
-          (load)="onImageLoad($event)"
-        />
+        ></qrcode>
       </div>
 
       <p class="qr-instruction">Escanea este código para tu check-in</p>

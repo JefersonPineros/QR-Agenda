@@ -7,10 +7,10 @@ import {
   IonContent,
   IonButtons,
   IonButton,
+  IonModal,
 } from '@ionic/angular/standalone';
 
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Evento {
   title: string;
@@ -63,7 +63,10 @@ export class CheckInComponent implements OnInit {
       type: 'pasado',
     },
   ];
+
   public typeUser: string = '';
+  scannedEvent: Evento | null = null;
+  showScannedModal = false;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.route.paramMap.subscribe({
@@ -103,5 +106,20 @@ export class CheckInComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/home', this.typeUser]);
+  }
+
+  onScanSuccess(scannedData: string) {
+    try {
+      const parsedData = JSON.parse(scannedData);
+      this.scannedEvent = {
+        title: parsedData.title,
+        date: parsedData.date,
+        time: parsedData.time,
+        type: parsedData.type,
+      };
+      this.showScannedModal = true;
+    } catch (error) {
+      console.error('QR inválido', error);
+    }
   }
 }

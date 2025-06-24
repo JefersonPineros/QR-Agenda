@@ -20,9 +20,9 @@
             </svg>
           </ion-button>
         </ion-buttons>
-        <span style="text-align: center"
-          >Escanear códigos QR de asistentes</span
-        >
+        <span style="text-align: center">
+          Escanear código QR de evento
+        </span>
       </div>
     </ion-title>
   </ion-toolbar>
@@ -30,54 +30,65 @@
 
 <ion-content [fullscreen]="true">
   <div class="scan-container">
-    <!-- Información de capacidad -->
-    <div class="capacity-section">
-      <span class="capacity-text">Capacidad: {{ eventData.capacity }}</span>
-    </div>
+    <!-- VISTA INICIAL (ANTES DE ESCANEAR) -->
+    <div *ngIf="!scannedEvent">
+      <!-- Escáner para la web -->
+      <div *ngIf="isWeb" class="camera-view">
+        <div
+          id="reader"
+          style="width: 100%; max-width: 320px; margin: 20px auto"
+        ></div>
+      </div>
 
-    <!-- Texto de instrucción -->
-    <div class="instruction-text">
-      <h2>
-        Por favor, escanea el código QR en los dispositivos de los asistentes
-      </h2>
-    </div>
-
-    <!-- Lista de alertas -->
-    <div class="alerts-section">
-      <div class="alert-item" *ngFor="let alert of eventData.alerts">
-        <span class="alert-text">Alerta: {{ alert }}</span>
+      <!-- Botón para nativo -->
+      <div *ngIf="!isWeb" class="native-prompt ion-padding">
+        <p>Apunta la cámara al código QR para registrar la asistencia.</p>
+        <ion-button
+          expand="block"
+          fill="solid"
+          class="scan-button"
+          (click)="onScanCode()"
+        >
+          ESCANEAR CÓDIGO
+        </ion-button>
       </div>
     </div>
 
-    <!-- Botones de acción -->
-    <div class="action-buttons">
-      <ion-button
-        expand="block"
-        fill="solid"
-        class="scan-button"
-        (click)="onScanCode()"
-      >
-        ESCANEAR CODIGO
-      </ion-button>
-
-      <ion-button
-        expand="block"
-        fill="outline"
-        class="finish-button"
-        (click)="finalizarEvento()"
-      >
-        Finalizar Evento
-      </ion-button>
+    <!-- VISTA DE RESULTADO (DESPUÉS DE ESCANEAR) -->
+    <div *ngIf="scannedEvent" class="scan-result-container ion-padding" style="text-align: center;">
+      <h2>Escaneo Exitoso</h2>
+      <div class="event-details">
+        <p><strong>Evento:</strong> {{ scannedEvent?.title }}</p>
+        <p><strong>Fecha:</strong> {{ scannedEvent?.date }}</p>
+        <p><strong>Hora:</strong> {{ scannedEvent?.time }}</p>
+      </div>
     </div>
   </div>
 
-  <!-- Alert -->
+  <!-- Alerta de error de escaneo -->
   <ion-alert
-    [isOpen]="isAlertOpen"
-    header="Finalizar evento"
-    message="¿Estás seguro que deseas finalizar el evento?"
-    [buttons]="alertButtons"
-    (didDismiss)="setOpen(false)"
-  >
-  </ion-alert>
+    [isOpen]="scanAlertOpen"
+    header="Error"
+    [message]="scanAlertMessage"
+    [buttons]="['OK']"
+    (didDismiss)="scanAlertOpen = false"
+  ></ion-alert>
 </ion-content>
+
+<ion-footer *ngIf="scannedEvent" class="ion-no-border">
+  <ion-toolbar>
+    <div class="ion-padding">
+      <ion-button
+        expand="block"
+        fill="solid"
+        class="scan-next-button"
+        (click)="resetScanner()"
+      >
+        Escanear Siguiente
+      </ion-button>
+      <ion-button expand="block" fill="outline" (click)="goBack()">
+        Finalizar Evento
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
