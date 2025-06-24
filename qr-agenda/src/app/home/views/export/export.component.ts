@@ -16,7 +16,7 @@ import {
   IonButton,
   IonIcon,
 } from '@ionic/angular/standalone';
-
+import { Toast } from '@capacitor/toast';
 @Component({
   selector: 'app-export-data',
   templateUrl: './export.component.html',
@@ -62,6 +62,10 @@ export class ExportComponent {
   /** Triggered when the bottom “Exportar” button is pressed */
   async onExport(): Promise<void> {
     if (!this.csv && !this.pdf) {
+      await Toast.show({
+        text: 'Selecciona al menos un formato para exportar.',
+      });
+
       const warn = await this.toastCtrl.create({
         message: 'Selecciona al menos un formato para exportar.',
         color: 'warning',
@@ -80,6 +84,10 @@ export class ExportComponent {
       console.log('Generating PDF …');
       /* this.exportService.generatePdf(); */
     }
+
+    await Toast.show({
+      text: 'Selecciona al menos un formato para exportar.',
+    });
 
     const ok = await this.toastCtrl.create({
       message: 'El reporte se está generando. Revisa tus descargas.',

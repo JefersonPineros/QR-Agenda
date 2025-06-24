@@ -15,6 +15,7 @@ import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserModel } from 'src/app/model/userModel';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Dialog } from '@capacitor/dialog';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -85,12 +86,22 @@ export class LoginComponent implements OnInit {
           'Contraseña incorrecta',
           'Por favor intente de nuevo, contraseña incorrecta'
         );
+
+        // await this.showAlertAndroid(
+        //   'Contraseña incorrecta',
+        //   'Por favor intente de nuevo, contraseña incorrecta'
+        // );
       }
     } else {
       await this.showAlert(
         'Usuario incorrecto',
         'El usuario no existe o es incorrecto'
       );
+
+      // await this.showAlertAndroid(
+      //   'Usuario incorrecto',
+      //   'El usuario no existe o es incorrecto'
+      // );
     }
   }
 
@@ -101,5 +112,12 @@ export class LoginComponent implements OnInit {
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+  private async showAlertAndroid(header: string, message: string) {
+    await Dialog.alert({
+      title: header,
+      message: message,
+    });
   }
 }

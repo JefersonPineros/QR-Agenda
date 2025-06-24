@@ -14,7 +14,7 @@ import {
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { Html5Qrcode } from 'html5-qrcode';
-
+// import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 interface Evento {
   title: string;
   date: string;
@@ -61,6 +61,26 @@ export class ScanComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  async requestCameraPermission() {
+    // try {
+    //   const result = await this.androidPermissions.checkPermission(
+    //     this.androidPermissions.PERMISSION.CAMERA
+    //   );
+    //   if (!result.hasPermission) {
+    //     const requestResult = await this.androidPermissions.requestPermission(
+    //       this.androidPermissions.PERMISSION.CAMERA
+    //     );
+    //     if (!requestResult.hasPermission) {
+    //       throw new Error('Permisos Denegados');
+    //     }
+    //   }
+    //   return true;
+    // } catch (error) {
+    //   console.log('Error de permisos', error);
+    //   return false;
+    // }
+  }
+
   ngOnDestroy(): void {
     this.stopWebScanner();
   }
@@ -85,7 +105,9 @@ export class ScanComponent implements OnInit, AfterViewInit, OnDestroy {
 
   stopWebScanner() {
     if (this.isWeb && this.html5QrCode) {
-      this.html5QrCode.stop().catch((err) => console.log('El scanner ya estaba detenido.'));
+      this.html5QrCode
+        .stop()
+        .catch((err) => console.log('El scanner ya estaba detenido.'));
       this.html5QrCode = null;
     }
   }
@@ -107,7 +129,12 @@ export class ScanComponent implements OnInit, AfterViewInit, OnDestroy {
     try {
       const parsedData: Evento = JSON.parse(scannedData);
       // Validación básica para asegurar que es un objeto de evento
-      if (parsedData && parsedData.title && parsedData.date && parsedData.time) {
+      if (
+        parsedData &&
+        parsedData.title &&
+        parsedData.date &&
+        parsedData.time
+      ) {
         this.scannedEvent = parsedData;
       } else {
         throw new Error('El código QR no contiene datos de evento válidos.');
