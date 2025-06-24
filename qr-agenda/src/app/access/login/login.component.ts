@@ -1,10 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import {
-  IonButtons,
   IonContent,
   IonHeader,
-  IonMenu,
-  IonMenuButton,
   IonTitle,
   IonToolbar,
   IonCol,
@@ -23,14 +20,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    IonButtons,
     IonContent,
     IonHeader,
-    IonMenu,
-    IonMenuButton,
     IonTitle,
     IonToolbar,
     IonCol,
@@ -82,25 +77,29 @@ export class LoginComponent implements OnInit {
     });
 
     if (userAcces.length > 0) {
-      if (userAcces[0].password == this.user.password) {
-        let type: string = userAcces[0].type!;
+      if (userAcces[0].password === this.user.password) {
+        const type: string = userAcces[0].type!;
         this.navCtrl.navigateForward(['/home', type]);
       } else {
-        console.log(this.user.password);
-        const alert = this.alertctrl.create({
-          header: 'Contraseña incorrecta',
-          message: 'Por favor intente de nuevo contraseña incorrecta',
-          buttons: ['OK'],
-        });
-        (await alert).present();
+        await this.showAlert(
+          'Contraseña incorrecta',
+          'Por favor intente de nuevo, contraseña incorrecta'
+        );
       }
     } else {
-      const alert = this.alertctrl.create({
-        header: 'Usuario incorrecto',
-        message: 'El usuario no existe o es incorrecto',
-        buttons: ['OK'],
-      });
-      (await alert).present();
+      await this.showAlert(
+        'Usuario incorrecto',
+        'El usuario no existe o es incorrecto'
+      );
     }
+  }
+
+  private async showAlert(header: string, message: string) {
+    const alert = await this.alertctrl.create({
+      header,
+      message,
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 }
