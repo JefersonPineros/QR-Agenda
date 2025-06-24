@@ -1,3 +1,18 @@
+// ion-button {
+//   --color:
+// }
+
+.no-uppercase {
+  text-transform: none !important;
+}
+
+.custom-textarea {
+  height: 150px !important;
+  background-color: #f8f9fa;
+}
+ion-textarea.custom {
+  height: 50px;
+}
 ion-header {
   text-align: center;
   padding-top: 8px;

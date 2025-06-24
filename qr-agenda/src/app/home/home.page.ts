@@ -16,7 +16,12 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { ActivatedRoute } from '@angular/router';
-import { logoIonic, arrowForward, peopleOutline } from 'ionicons/icons';
+import {
+  logoIonic,
+  arrowForward,
+  peopleOutline,
+  colorWand,
+} from 'ionicons/icons';
 import { NavController } from '@ionic/angular';
 import { EventModel } from '../model/eventModel';
 import { CommonModule } from '@angular/common';
@@ -39,7 +44,6 @@ import { CommonModule } from '@angular/common';
     IonLabel,
     IonList,
     IonIcon,
-    IonNote,
     RouterModule,
   ],
 })
@@ -65,6 +69,7 @@ export class HomePage {
       logoIonic,
       arrowForward,
       peopleOutline,
+      colorWand,
     });
 
     this.listEvents = [
