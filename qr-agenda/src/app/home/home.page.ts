@@ -25,6 +25,7 @@ import {
 import { NavController } from '@ionic/angular';
 import { EventModel } from '../model/eventModel';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -32,6 +33,7 @@ import { CommonModule } from '@angular/common';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
+    FormsModule,
     IonList,
     IonButton,
     IonContent,

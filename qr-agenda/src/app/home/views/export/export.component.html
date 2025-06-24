@@ -36,7 +36,11 @@
           eventos.
         </p>
       </ion-label>
-      <ion-checkbox slot="end" formControlName="csv"></ion-checkbox>
+      <ion-checkbox
+        slot="end"
+        [(ngModel)]="csv"
+        [ngModelOptions]="{ standalone: true }"
+      ></ion-checkbox>
     </ion-item>
 
     <!-- PDF option -->
@@ -45,7 +49,11 @@
         <h3>PDF</h3>
         <p>También puedes generar un reporte en formato PDF.</p>
       </ion-label>
-      <ion-checkbox slot="end" formControlName="pdf"></ion-checkbox>
+      <ion-checkbox
+        slot="end"
+        [(ngModel)]="pdf"
+        [ngModelOptions]="{ standalone: true }"
+      ></ion-checkbox>
     </ion-item>
   </form>
 
@@ -53,7 +61,7 @@
   <ion-button
     expand="block"
     class="export-btn"
-    [disabled]="!exportForm.value.csv && !exportForm.value.pdf"
+    [disabled]="!csv && !pdf"
     (click)="onExport()"
   >
     Exportar

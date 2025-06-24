@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import {
@@ -20,9 +21,11 @@ import {
   selector: 'app-export-data',
   templateUrl: './export.component.html',
   styleUrls: ['./export.component.scss'],
+  standalone: true,
   imports: [
+    CommonModule,
+    FormsModule,
     IonButtons,
-    IonBackButton,
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -31,12 +34,13 @@ import {
     IonLabel,
     IonCheckbox,
     IonButton,
-    IonIcon,
   ],
 })
 export class ExportComponent {
   /** Reactive-form object that tracks the two check-boxes */
-  exportForm: FormGroup;
+  // exportForm: FormGroup;
+  public csv: boolean = false;
+  public pdf: boolean = false;
   public typeUser: string = '';
 
   constructor(
@@ -53,17 +57,11 @@ export class ExportComponent {
         }
       },
     });
-    this.exportForm = this.fb.group({
-      csv: [false],
-      pdf: [false],
-    });
   }
 
   /** Triggered when the bottom “Exportar” button is pressed */
   async onExport(): Promise<void> {
-    const { csv, pdf } = this.exportForm.value;
-
-    if (!csv && !pdf) {
+    if (!this.csv && !this.pdf) {
       const warn = await this.toastCtrl.create({
         message: 'Selecciona al menos un formato para exportar.',
         color: 'warning',
@@ -74,11 +72,11 @@ export class ExportComponent {
     }
 
     // ── TODO: wire these calls to whatever service generates the files ──
-    if (csv) {
+    if (this.csv) {
       console.log('Generating CSV …');
       /* this.exportService.generateCsv(); */
     }
-    if (pdf) {
+    if (this.pdf) {
       console.log('Generating PDF …');
       /* this.exportService.generatePdf(); */
     }
