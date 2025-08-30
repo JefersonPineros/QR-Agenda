@@ -1,0 +1,140 @@
+.formulario {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+  
+    .titulo-principal {
+      font-size: 24px;
+      margin-bottom: 2rem;
+      color: #343a40;
+      text-align: center;
+    }
+  
+    .subtexto {
+      display: block;
+      font-size: 13px;
+      color: #6c757d;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #f8f9fa;
+      transition: border-color 0.2s;
+  
+      &::placeholder {
+        color: #adb5bd;
+      }
+  
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+        background-color: #fff;
+      }
+    }
+  
+    input[type='date'] {
+      color: #6c757d;
+  
+      &::-webkit-calendar-picker-indicator {
+        filter: invert(35%);
+      }
+    }
+  
+    .ponencias {
+      margin-bottom: 20px;
+      text-align: left;
+  
+      .ponencias-titulo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+  
+        .titulo {
+          font-weight: bold;
+          color: #343a40;
+        }
+  
+        .tema {
+          font-size: 13px;
+          color: #6c757d;
+        }
+      }
+    }
+  
+    .btn-microfono {
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s, border-color 0.2s;
+      color: #6c757d;
+  
+      svg {
+        stroke: currentColor;
+      }
+  
+      &:hover {
+        background-color: #e0e0e0;
+        border-color: #adb5bd;
+      }
+  
+      &:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+    }
+  
+    .botones {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+  
+      button {
+        flex: 1;
+        padding: 12px;
+        font-weight: bold;
+        font-size: 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+  
+      .btn-gris {
+        background-color: #f8f9fa;
+        color: #343a40;
+  
+        &:hover {
+          background-color: #e0e0e0;
+        }
+      }
+  
+      .btn-azul {
+        background-color: #00bfff;
+        color: #000000;
+  
+        &:hover {
+          background-color: #00a6d6;
+        }
+      }
+    }
+  }
+  
